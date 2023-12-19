@@ -1,0 +1,7 @@
+<a routerLink="/centers">Liste des centres</a>
+
+<div class="detail" *ngIf="center">
+    <h3>{{center.name | uppercase}}</h3> 
+    <div>{{center.address}}, {{center.city | uppercase}}</div>
+</div>
+
