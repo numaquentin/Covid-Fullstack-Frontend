@@ -7,14 +7,16 @@ import { FormsModule } from '@angular/forms';
 import { VaccinationCenterComponent } from './vaccination-center/vaccination-center.component';
 import { VaccinationCenterListComponent } from './vaccination-center-list/vaccination-center-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SearchBarComponent } from './search-bar/search-bar.component'
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ReservationComponent } from './reservation/reservation.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     VaccinationCenterComponent,
     VaccinationCenterListComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
