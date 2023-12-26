@@ -9,11 +9,11 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./vaccination-center-list.component.scss']
 })
 export class VaccinationCenterListComponent {
-  centers: VaccinationCenter[] = []
-  //centers: VaccinationCenter[] = [
-  //  {id: 1, name: 'Hôpital du vélodrome', address: '123 Main Street', city: 'Nancy'},
-  //  {id: 2, name: 'Clinique du 93', address: '456 Elm Street', city: 'Paris'},
-  //]
+  //centers: VaccinationCenter[] = []
+  centers: VaccinationCenter[] = [
+    {id: 1, name: 'Hôpital du vélodrome', address: '123 Main Street', city: 'Nancy'},
+    {id: 2, name: 'Clinique du 93', address: '456 Elm Street', city: 'Paris'},
+  ]
 
   selected?: VaccinationCenter;
   searchedCenters: VaccinationCenter[] = [];
@@ -21,9 +21,9 @@ export class VaccinationCenterListComponent {
   constructor(private service: VaccinationService) {  }
 
   ngOnInit(): void {
-    this.service.getAllVaccinationCenter().subscribe(resultCenters=>{
-      this.centers=resultCenters;
-    });
+  //  this.service.getAllVaccinationCenter().subscribe(resultCenters=>{
+  //    this.centers=resultCenters;
+  //  });
   //  this.centers=this.service.getAllVaccinationCenter();
   }
 

@@ -1,4 +1,7 @@
+<a routerLink="/users/add">Créer un compte</a>
+
 <h2>Liste des centres de vaccination</h2>
+
 <app-search-bar (search)="handleSearch($event)"></app-search-bar>
 <div *ngIf="searchedCenters.length > 0">
     <h2>Résultats de la recherche :</h2>
@@ -27,8 +30,4 @@
     </button>  
 </li>
 </ul>
-
-<app-vaccination-center
-    (deleted)="onDeleted($event)">
-</app-vaccination-center>
 

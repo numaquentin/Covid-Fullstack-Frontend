@@ -1,3 +1,7 @@
+# INDICATIONS INSTALL
+
+installer 'ts-md5' : npm install 'ts-md5'
+
 # VaccinationApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
