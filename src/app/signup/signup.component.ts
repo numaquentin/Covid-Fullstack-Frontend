@@ -15,13 +15,13 @@ export class SignupComponent {
   onSubmit() {
     //this.authService.signup(this.user).subscribe(repsonse => {
       // Traiter la réponse de l'API si nécessaire
-    //  console.log('Réponse de l\'API :',repsonse); 
+      //console.log('Réponse de l\'API :',repsonse); 
     //}, error => {
       // Gérer les erreurs si l'appel à l'API échoue
-    //  console.error('Erreur lors de l\'appel à l\'API :', error);
+      //console.error('Erreur lors de l\'appel à l\'API :', error);
     //});
     // Envoyer les données du formulaire au service de création de compte
-    //console.log('Formulaire soumis :', this.user);
+    console.log('Formulaire soumis :', this.user);
   }
 }
 

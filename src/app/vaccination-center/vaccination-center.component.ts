@@ -22,7 +22,10 @@ export class VaccinationCenterComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.center = this.vaccinationService.getCenterById(id);
+    this.vaccinationService.getCenterById(id).subscribe(resultCenter=>{
+      this.center=resultCenter;
+    });
+    //this.center = this.vaccinationService.getCenterById(id);
   }
 
   selected?:VaccinationCenter

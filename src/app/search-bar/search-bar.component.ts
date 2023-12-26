@@ -12,10 +12,6 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class SearchBarComponent {
   searchQuery: string = '';
-  //centers: VaccinationCenter[] = [
-  //  {id: 1, name: 'Hôpital du vélodrome', address: '123 Main Street', city: 'Nancy'},
-  //  {id: 2, name: 'Clinique du 93', address: '456 Elm Street', city: 'Paris'},
-  //];
 
   constructor(private centerService: VaccinationService) { }
 
@@ -23,8 +19,15 @@ export class SearchBarComponent {
   search: EventEmitter<VaccinationCenter[]> = new EventEmitter<VaccinationCenter[]>();
 
   SearchCenterByCity(){
-    this.centerService.getCenters().subscribe(centers => {
+    this.centerService.getAllCenters().subscribe(centers => {
       const filteredCenters = centers.filter(center => center.city.toLowerCase() === this.searchQuery.toLowerCase());
+      this.search.emit(filteredCenters);
+    });    
+  }
+
+  SearchCenterByName(){
+    this.centerService.getAllCenters().subscribe(centers => {
+      const filteredCenters = centers.filter(center => center.name.toLowerCase() === this.searchQuery.toLowerCase());
       this.search.emit(filteredCenters);
     });    
   }

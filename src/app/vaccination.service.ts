@@ -8,27 +8,19 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VaccinationService {
-  //CENTERS: VaccinationCenter[] = []
-  CENTERS: VaccinationCenter[] = [
-    {id: 1, name: 'Hôpital du vélodrome', address: '123 Main Street', city: 'Nancy'},
-    {id: 2, name: 'Clinique du 93', address: '456 Elm Street', city: 'Paris'},
-  ]
 
   constructor(private httpClient: HttpClient) { }
 
-//  getAllVaccinationCenter(): Observable<VaccinationCenter[]>{
-//    return this.httpClient.get<VaccinationCenter[]>("api/centers");
-//  }
-
-  getCenters(): Observable<VaccinationCenter[]>{
-    return of(this.CENTERS);
+  getAllCenters(): Observable<VaccinationCenter[]>{
+    return this.httpClient.get<VaccinationCenter[]>("api/public/centers/all/1");
   }
 
-  getCenterById(id: Number) : VaccinationCenter | undefined{
-    return this.CENTERS.find(c=>c.id==id);
+  getCenterById(id: Number) : Observable<VaccinationCenter | undefined>{
+    return this.httpClient.get<VaccinationCenter>(`api/public/centers/id/${id}`);
+    //return this.CENTERS.find(c=>c.id==id);
   }
 
-//  getCenterByName(name: string) : Observable<VaccinationCenter | undefined>{
-//    return this.httpClient.get<VaccinationCenter>("api/centers/name/{name}");
-//  }
+  getCenterByName(name: string) : Observable<VaccinationCenter | undefined>{
+    return this.httpClient.get<VaccinationCenter>(`api/public/centers/name/${name}`);
+  }
 }
