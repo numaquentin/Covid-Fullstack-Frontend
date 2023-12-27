@@ -8,8 +8,7 @@ import { AuthService } from '../service/auth.service';
 })
 
 export class SignupComponent {
-  user = {id: '', login: '', password: ''};
-  role = '';
+  user = {id: 0, login: '', password: '', role: ''};
 
   constructor(private authService: AuthService) { }
 

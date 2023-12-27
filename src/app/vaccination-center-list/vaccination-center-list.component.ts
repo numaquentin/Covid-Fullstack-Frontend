@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { VaccinationCenter } from '../vaccination-center';
+import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 import { VaccinationService } from '../service/vaccination.service';
 import { FormBuilder } from '@angular/forms';
 

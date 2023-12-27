@@ -3,13 +3,25 @@
 <form (ngSubmit)="onSubmit()"> 
   <div>
     <label for="email">Email :</label>
-    <input type="email" id="login" ngModel="user.login" name="login" required>
+    <input type="string" id="login" ngModel="user.login" name="login" required>
   </div>  
   
   <div>
     <label for="password">Mot de passe :</label>
-    <input type="password" id="password" ngModel="user.password" name="password" required>
+    <input type="string" id="password" ngModel="user.password" name="password" required>
+  </div>
+  <div>
+    <label>Rôle :</label>
+    <label>
+      <input type="radio" ngModel="user.role" name="role" value="user" required> Utilisateur
+    </label>
+    <label>
+      <input type="radio" ngModel="user.role" name="role" value="admin" required> Administrateur
+    </label>
+    <label>
+      <input type="radio" ngModel="user.role" name="role" value="superadmin" required> Super Administrateur
+    </label>
   </div>
 
-    <button type="submit">Créer un compte</button>
+  <button type="submit" routerLink="/centers">Créer un compte</button>
   </form>

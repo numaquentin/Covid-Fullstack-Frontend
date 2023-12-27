@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { VaccinationCenter } from '../vaccination-center';
+import { VaccinationCenter } from './vaccination-center';
 import { ActivatedRoute } from '@angular/router';
 import { VaccinationService } from '../service/vaccination.service';
 

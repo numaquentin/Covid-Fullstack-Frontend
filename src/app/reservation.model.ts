@@ -1,4 +1,4 @@
-import { VaccinationCenter } from "./vaccination-center";
+import { VaccinationCenter } from "./vaccination-center/vaccination-center";
 
 export interface Reservation {
     center: VaccinationCenter;

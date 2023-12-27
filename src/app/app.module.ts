@@ -10,7 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ReservationComponent } from './reservation/reservation.component'
 import { ReservationService } from './service/reservation.service';
-import { SignupAdminComponent } from './signup-admin/signup-admin.component';
+import { LoginUserComponent } from './login-user/login-user.component';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { LoginSuperAdminComponent } from './login-super-admin/login-super-admin.component';
+import { FrontPageComponent } from './front-page/front-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { SignupAdminComponent } from './signup-admin/signup-admin.component';
     VaccinationCenterListComponent,
     SearchBarComponent,
     ReservationComponent,
-    SignupAdminComponent
+    LoginUserComponent,
+    LoginAdminComponent,
+    LoginSuperAdminComponent,
+    FrontPageComponent,
   ],
   imports: [
     BrowserModule,

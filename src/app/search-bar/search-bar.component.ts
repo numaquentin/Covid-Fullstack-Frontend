@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { VaccinationCenter } from '../vaccination-center';
+import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 import { VaccinationService } from '../service/vaccination.service';
 import { VaccinationCenterListComponent } from '../vaccination-center-list/vaccination-center-list.component';
 import { Output, EventEmitter } from '@angular/core';

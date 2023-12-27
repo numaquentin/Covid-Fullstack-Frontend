@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { VaccinationCenter } from '../vaccination-center';
+import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 import { ActivatedRoute } from '@angular/router';
 import { VaccinationService } from '../service/vaccination.service';
 import { ReservationService } from '../service/reservation.service';
@@ -44,7 +44,6 @@ export class ReservationComponent {
     }, error => {
       // Gérer les erreurs si l'appel au service échoue
       console.error('Erreur lors de l\'appel au service de réservation :', error);
-      });
+    });
   }
-
 }
