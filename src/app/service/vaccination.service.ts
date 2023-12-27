@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { VaccinationCenter } from './vaccination-center';
-import { VaccinationCenterComponent } from './vaccination-center/vaccination-center.component';
+import { VaccinationCenter } from '../vaccination-center';
+import { VaccinationCenterComponent } from '../vaccination-center/vaccination-center.component';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ReservationComponent } from './reservation/reservation.component';
+import { ReservationComponent } from '../reservation/reservation.component';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,5 @@ export class VaccinationService {
 
   getCenterByName(name: string) : Observable<VaccinationCenter | undefined>{
     return this.httpClient.get<VaccinationCenter>(`api/public/centers/name/${name}`);
-  }
-
-  setReservation(reservation: ReservationComponent) : void{
-    
   }
 }

@@ -1,30 +1,33 @@
-<h2>Reservation d'un rendez-vous à {{center!.name}}</h2>
+<h2>Reservation d'un rendez-vous à {{reservation.center!.name}}</h2>
 
 <form (ngSubmit)="onSubmit()"> 
-    <div>
-        <label for="name">Nom :</label>
-        <input type="email" id="login" ngModel="user.login" name="login" required>
-    </div> 
+  <div>
+      <label for="name">Nom :</label>
+      <input type="string" id="name" [(ngModel)]="reservation.name" name="name" required>
+  </div> 
 
-    <div>
-        <label for="name">Prénom :</label>
-        <input type="email" id="login" ngModel="user.login" name="login" required>
-    </div> 
-  
-    <div>
-        <label for="email">Email :</label>
-        <input type="email" id="login" ngModel="user.login" name="login" required>
-    </div>  
+  <div>
+      <label for="surname">Prénom :</label>
+      <input type="string" id="surname" [(ngModel)]="reservation.surname" name="surname" required>
+  </div> 
+
+  <div>
+      <label for="mail">Email :</label>
+      <input type="string" id="mail" [(ngModel)]="reservation.mail" name="mail" required>
+  </div>  
   
   <div>
-    <label for="password">Téléphone :</label>
-    <input type="password" id="password" ngModel="user.password" name="password" required>
+    <label for="phone">Téléphone :</label>
+    <input type="number" id="phone" ngModel="reservation.phone" name="phone" required>
   </div>
 
   <div>
-    <label for="password">Date :</label>
-    <input type="password" id="password" ngModel="user.password" name="password" required>
+    <label for="date">Date :</label>
+    <input type="date" id="date" [(ngModel)]="reservation.date" name="date" required>
   </div>
 
-    <button type="submit">Créer un compte</button>
+    <button 
+      type="submit"
+      routerLink="/centers">
+      Créer un compte</button>
   </form>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { VaccinationCenter } from '../vaccination-center';
-import { VaccinationService } from '../vaccination.service';
+import { VaccinationService } from '../service/vaccination.service';
 import { VaccinationCenterListComponent } from '../vaccination-center-list/vaccination-center-list.component';
 import { Output, EventEmitter } from '@angular/core';
 
@@ -18,16 +18,9 @@ export class SearchBarComponent {
   @Output()
   search: EventEmitter<VaccinationCenter[]> = new EventEmitter<VaccinationCenter[]>();
 
-  SearchCenterByCity(){
+  SearchCenter(){
     this.centerService.getAllCenters().subscribe(centers => {
-      const filteredCenters = centers.filter(center => center.city.toLowerCase() === this.searchQuery.toLowerCase());
-      this.search.emit(filteredCenters);
-    });    
-  }
-
-  SearchCenterByName(){
-    this.centerService.getAllCenters().subscribe(centers => {
-      const filteredCenters = centers.filter(center => center.name.toLowerCase() === this.searchQuery.toLowerCase());
+      const filteredCenters = centers.filter(center => center.city.toLowerCase() === this.searchQuery.toLowerCase() || center.name.toLowerCase() === this.searchQuery.toLowerCase());
       this.search.emit(filteredCenters);
     });    
   }

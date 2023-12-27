@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,18 +8,19 @@ import { AuthService } from '../auth.service';
 })
 
 export class SignupComponent {
-  user = {id: '', login: '', password: '' };
+  user = {id: '', login: '', password: ''};
+  role = '';
 
   constructor(private authService: AuthService) { }
 
   onSubmit() {
-    //this.authService.signup(this.user).subscribe(repsonse => {
+    this.authService.signup(this.user).subscribe(repsonse => {
       // Traiter la réponse de l'API si nécessaire
-      //console.log('Réponse de l\'API :',repsonse); 
-    //}, error => {
+      console.log('Réponse de l\'API :',repsonse); 
+    }, error => {
       // Gérer les erreurs si l'appel à l'API échoue
-      //console.error('Erreur lors de l\'appel à l\'API :', error);
-    //});
+      console.error('Erreur lors de l\'appel à l\'API :', error);
+    });
     // Envoyer les données du formulaire au service de création de compte
     console.log('Formulaire soumis :', this.user);
   }

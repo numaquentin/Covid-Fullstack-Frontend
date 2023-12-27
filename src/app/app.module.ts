@@ -9,6 +9,8 @@ import { VaccinationCenterListComponent } from './vaccination-center-list/vaccin
 import { HttpClientModule } from '@angular/common/http';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ReservationComponent } from './reservation/reservation.component'
+import { ReservationService } from './service/reservation.service';
+import { SignupAdminComponent } from './signup-admin/signup-admin.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { ReservationComponent } from './reservation/reservation.component'
     VaccinationCenterComponent,
     VaccinationCenterListComponent,
     SearchBarComponent,
-    ReservationComponent
+    ReservationComponent,
+    SignupAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { ReservationComponent } from './reservation/reservation.component'
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ReservationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

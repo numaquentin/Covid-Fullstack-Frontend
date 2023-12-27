@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { VaccinationCenter } from '../vaccination-center';
-import { VaccinationService } from '../vaccination.service';
+import { VaccinationService } from '../service/vaccination.service';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
