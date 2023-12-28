@@ -13,7 +13,9 @@ import { ReservationService } from './service/reservation.service';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { LoginSuperAdminComponent } from './login-super-admin/login-super-admin.component';
-import { FrontPageComponent } from './front-page/front-page.component';
+import { PageAdminComponent } from './page-admin/page-admin.component';
+import { PageSuperAdminComponent } from './page-super-admin/page-super-admin.component';
+import { PageUserComponent } from './page-user/page-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { FrontPageComponent } from './front-page/front-page.component';
     LoginUserComponent,
     LoginAdminComponent,
     LoginSuperAdminComponent,
-    FrontPageComponent,
+    PageAdminComponent,
+    PageSuperAdminComponent,
+    PageUserComponent,
   ],
   imports: [
     BrowserModule,

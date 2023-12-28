@@ -13,10 +13,6 @@ import { VaccinationService } from '../service/vaccination.service';
 export class VaccinationCenterComponent implements OnInit {
   @Input() center?: VaccinationCenter;
   @Output() deleted = new EventEmitter<VaccinationCenter>();
-  
-  delete(){
-    this.deleted.emit(this.center);
-  }
 
   constructor(private route: ActivatedRoute, private vaccinationService: VaccinationService) {  }
 

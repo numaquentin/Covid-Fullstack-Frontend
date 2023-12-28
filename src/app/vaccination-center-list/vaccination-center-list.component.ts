@@ -30,13 +30,9 @@ export class VaccinationCenterListComponent {
     this.selected=center;
   }
 
-  onDeleted(center: VaccinationCenter){
-    delete this.selected;
-    this.centers.splice(this.centers.indexOf(center), 1);
-  }
-
   handleSearch(event: VaccinationCenter[]){
     this.searchedCenters = event;
   }
+  
 
 }
