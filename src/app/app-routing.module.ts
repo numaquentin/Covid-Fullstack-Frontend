@@ -4,17 +4,13 @@ import { VaccinationCenterListComponent } from './vaccination-center-list/vaccin
 import { VaccinationCenterComponent } from './vaccination-center/vaccination-center.component';
 import { SignupComponent } from './signup/signup.component';
 import { ReservationComponent } from './reservation/reservation.component';
-import { LoginUserComponent } from './login-user/login-user.component';
-import { LoginAdminComponent } from './login-admin/login-admin.component';
-import { LoginSuperAdminComponent } from './login-super-admin/login-super-admin.component';
 import { PageUserComponent } from './page-user/page-user.component';
 import { PageAdminComponent } from './page-admin/page-admin.component';
 import { PageSuperAdminComponent } from './page-super-admin/page-super-admin.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: "user/login",                                 component: LoginUserComponent },
-  { path: "admin/login",                                component: LoginAdminComponent },
-  { path: "superadmin/login",                           component: LoginSuperAdminComponent },
+  { path: "login",                                      component: LoginComponent },
   { path: "user/",                                      component: PageUserComponent },
   { path: "admin/",                                     component: PageAdminComponent },
   { path: "superadmin/",                                component: PageSuperAdminComponent },

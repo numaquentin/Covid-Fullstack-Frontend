@@ -3,6 +3,7 @@ import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HeaderService } from './header.service';
+import { VaccinationCenterComponent } from '../vaccination-center/vaccination-center.component';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,10 @@ export class VaccinationService {
 
     // Effectuez la requête POST
     return this.httpClient.post(url, body, { headers });
+  }
+
+  deleteCenter(id: number) {
+    const headers = this.headerService.getHeader();
+    return this.httpClient.post(`api/superadmin/center/deletion/${id}`, { headers });
   }
 }

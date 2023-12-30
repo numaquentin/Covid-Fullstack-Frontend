@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Md5 } from 'ts-md5';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HeaderService } from './header.service';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,39 +10,59 @@ import { HeaderService } from './header.service';
 
 export class AuthService {
 
+  log = {login: '', password: ''}
+  newUser = {login: '', password: ''}
+  newAdmin = {login: '', password: '', center_id: 0 }
+  newSuperAdmin = {login: '', password: ''}
+  newLogin: string = '';
+  newPassword: string = '';
+  newRole: string = '';
+  newCenter_id: number = 0;
+
   constructor(private httpClient: HttpClient, private headerService: HeaderService) { }
 
-  signup(user: any) {
-    user.id = `${user.name}:${user.password}`;
-    user.id = btoa(user.id);
-    // Logique de création de compte, appel à une API, etc.
-    console.log('Création de compte :', user);
-    if (user.role == 'superadmin'){
-      return this.httpClient.post('api/superadmin/create', user);
-    }
-    else {
-      return this.httpClient.post('api/admin/create', user);
-    }
-  }
-
-  login(username: string, password: string, role: string): Observable<any> {
-    const id = `${username}:${password}`;
-    const idBase64 = btoa(id);
+  createNewUser(login: string, password: string, createrId: string) {
+    this.newUser.login = login;
+    this.newUser.password = password;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Autorisation': `Basic ${idBase64}`
+      'Authorization': `Bearer ${createrId}`        
     });
-    if (role == "user"){
-      return this.httpClient.post('url login user', idBase64, {headers});
-    }
-    else if (role == "admin"){
-      this.headerService.setHeader(headers);
-      return this.httpClient.post('url login admin', idBase64, {headers});
-    }
-    else {
-      return this.httpClient.post('url login superadmin', idBase64, {headers});
-    }
-    
+    return this.httpClient.post('api/user/create', this.newUser, {headers});
   }
+
+  createNewAdmin(login: string, password: string, center_id: number, createrId: string) {
+    this.newAdmin.login = login;
+    this.newAdmin.password = password;
+    this.newAdmin.center_id = center_id;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${createrId}`        
+    });
+    return this.httpClient.post('api/admin/create', this.newAdmin, {headers});
+  }
+
+  createNewSuperAdmin(login: string, password: string, createrId: string) {
+    this.newSuperAdmin.login = login;
+    this.newSuperAdmin.password = password;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${createrId}`        
+    });
+    return this.httpClient.post('api/superadmin/create', this.newSuperAdmin, {headers});
+  }
+
+  login(username: string, password: string): Observable<string> {
+    const log = { login: username, password: password };
+    const logJson = JSON.stringify(log, null, 2);
+    console.log('JSON envoyé au backend :', logJson);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    //this.headerService.setHeader(headers);
+    return this.httpClient.post<string>('api/public/getRole', logJson, { headers });
+  }
+
 }
 

@@ -3,7 +3,7 @@ import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 import { ActivatedRoute } from '@angular/router';
 import { VaccinationService } from '../service/vaccination.service';
 import { ReservationService } from '../service/reservation.service';
-import { Reservation } from '../reservation.model';
+import { Reservation } from '../model/reservation.model';
 import { VaccinationCenterComponent } from '../vaccination-center/vaccination-center.component';
 
 @Component({

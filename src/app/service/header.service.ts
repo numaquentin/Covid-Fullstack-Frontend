@@ -5,13 +5,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HeaderService {
-  private header?: HttpHeaders;
+  private header: HttpHeaders = new HttpHeaders;
 
   setHeader(headerValue: HttpHeaders){
     this.header=headerValue;
   }
 
-  getHeader(): HttpHeaders | undefined {
+  getHeader(): HttpHeaders {
     return this.header;
   }
 }

@@ -1,7 +1,15 @@
 import { Component } from '@angular/core';
 import { VaccinationService } from '../service/vaccination.service';
 import { VaccinationCenter } from '../vaccination-center/vaccination-center';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HeaderService } from '../service/header.service';
+import { User } from '../model/user.model'
+import { UserService } from '../service/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { VaccinationCenterComponent } from '../vaccination-center/vaccination-center.component';
+import { Reservation } from '../model/reservation.model';
+import { ReservationService } from '../service/reservation.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-page-admin',
@@ -10,43 +18,56 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PageAdminComponent {
 
-  centers: VaccinationCenter[] = []
-  newCenter = {name: '', city: '', address: ''}
-  selected?: VaccinationCenter;
-  searchedCenters: VaccinationCenter[] = [];
+  adminCenter?: VaccinationCenter;
+  user: User = { id: '', role: 'admin', center_id: 0};
+  reservations: Reservation[] = []
+  medecins: User[] = []
+  newMedecin = {login: '', password: ''};
+  newUser: User = {id:'', role:'user', center_id:0};
 
-  constructor(private service: VaccinationService) {  }
+  constructor(private service: VaccinationService, 
+              private RDVService: ReservationService, 
+              private route: ActivatedRoute, 
+              private authService: AuthService, 
+              private headerService : HeaderService, 
+              private userService: UserService) {  }
 
   ngOnInit(): void {
-    this.service.getAllCenters().subscribe(resultCenters=>{
-      this.centers=resultCenters;
+    //this.httpHeader = this.headerService.getHeader();
+    const id = String(this.route.snapshot.paramMap.get('id'));
+    this.userService.getUserById(id).subscribe(resultUser=>{
+      if (resultUser){
+        this.user=resultUser;
+        this.service.getCenterById(this.user.center_id).subscribe(resultCenter=>{
+          if (resultCenter){
+            this.adminCenter=resultCenter[0];
+          } else { console.error(`Centre avec l'ID ${this.user.center_id} non trouvé`);}
+        });
+      } else { console.error(`Utilisateur avec l'ID ${id} non trouvé`);}
+    });
+    this.userService.getMedecinsByCenter(this.user.center_id,this.headerService.getHeader()).subscribe(resultList =>{
+      this.medecins=resultList;
+      console.log('Importation de la liste de médecins réussie :', resultList);
+    }, error => {
+      console.error('Erreur lors de l\'importation de la liste de médecins :', error);
+    })
+  }
+
+  deleteRDV(rdv: Reservation){
+    this.RDVService.deleteReservation(rdv).subscribe(response => {
+        // Traiter la réponse si nécessaire (redirection, stockage du token, etc.)
+        console.log('Connexion réussie :', response);
+    }, error => {
+      // Gérer les erreurs si la connexion échoue
+      console.error('Erreur lors de la connexion :', error);
     });
   }
 
-  isSpecialCenter(center: VaccinationCenter){
-    return center.city == "Nancy"
+  addMedecin(){
+    this.authService.createNewUser(this.newMedecin.login, this.newMedecin.password, this.user.id);
   }
 
-  selectCenter(center: VaccinationCenter){
-    this.selected=center;
-  }
-
-  onDeleted(center: VaccinationCenter){
-    delete this.selected;
-    this.centers.splice(this.centers.indexOf(center), 1);
-  }
-
-  handleSearch(event: VaccinationCenter[]){
-    this.searchedCenters = event;
-  }
-
-  addCenter() {
-    this.service.addCenter(this.newCenter.name, this.newCenter.address, this.newCenter.city).subscribe(response => {
-        // Traiter la réponse si nécessaire (redirection, stockage du token, etc.)
-        console.log('Connexion réussie :', response);
-      }, error => {
-        // Gérer les erreurs si la connexion échoue
-        console.error('Erreur lors de la connexion :', error);
-      });
+  getUserLogin(id: string) : string {
+    return this.userService.getLogin(id);
   }
 }
