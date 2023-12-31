@@ -1,6 +1,19 @@
 # INDICATIONS INSTALL
 
-installer 'ts-md5' : npm install 'ts-md5'
+Afin de lancer le projet, il suffit de lancer la commande `ng generate` dans le terminal.
+Une fois cette dernière lancée, allez sur le site à l'URL suivante : `http://localhost:4200`. Connectez-vous avec le compte user:password
+afin de se connecter en tant que super-administrateur. Une fois sur ce compte, vous pouvez alors créer un compte administrateur, sur lequel 
+il est possible de créer des comptes utilisateur.
+
+Les fonctionnalités implémentées sont les suivantes : 
+- Super admin : 
+    Gestion des centres (CRD)
+    Gestion des administrateurs des centres (CRD)
+- Admin : 
+    Gestion des médecins de son centre de vaccination (CR)
+    Gestion des réservations de son centre (RD)
+- Médecin : 
+    Valider la vaccination d'une personne (au départ de la personne) (U)
 
 # VaccinationApp
 
