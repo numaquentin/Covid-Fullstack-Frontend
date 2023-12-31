@@ -16,4 +16,6 @@ export class ReservationService {
   deleteReservation(reservation: Reservation){
     return this.httpClient.post(`/api/admin/rendezvous/delete/{id}`, reservation);
   }
+
+  //getReservationByCenterId()
 }

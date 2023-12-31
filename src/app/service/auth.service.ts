@@ -52,17 +52,15 @@ export class AuthService {
     return this.httpClient.post('api/superadmin/create', this.newSuperAdmin, {headers});
   }
 
-  login(username: string, password: string): Observable<string> {
+  getAllAdmins() {}
+
+  login(username: string, password: string): Observable<{role: string}> {
     const log = { login: username, password: password };
-    const logJson = JSON.stringify(log, null, 2);
-    console.log('JSON envoyé au backend :', logJson);
+    const logJson = JSON.stringify(log);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-
-    //this.headerService.setHeader(headers);
-    return this.httpClient.post<string>('api/public/getRole', logJson, { headers });
+    return this.httpClient.post<{role: string}>('api/public/getRole', log, { headers });
   }
-
 }
 

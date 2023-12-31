@@ -25,21 +25,18 @@ export class VaccinationService {
     return this.httpClient.get<VaccinationCenter>(`api/public/centers/name/${name}`);
   }
 
+  getCenterByCity(city: string) : Observable<VaccinationCenter | undefined>{
+    return this.httpClient.get<VaccinationCenter>(`api/public/centers/city/${city}`);
+  }
+
   addCenter(n: string, a: string, c: string) {
-    const url = 'api/superadmin/centers/add';
-
-    // Récupérez le HttpHeaders contenant les informations de connexion du super administrateur
     const headers = this.headerService.getHeader();
-
-    // Créez le corps de la requête
-    const body = { n, a, c };
-
-    // Effectuez la requête POST
-    return this.httpClient.post(url, body, { headers });
+    const body = { name: n,address: a,city: c };
+    return this.httpClient.post("api/superadmin/centers/add", body, { headers });
   }
 
   deleteCenter(id: number) {
     const headers = this.headerService.getHeader();
-    return this.httpClient.post(`api/superadmin/center/deletion/${id}`, { headers });
+    return this.httpClient.delete(`api/superadmin/center/deletion/${id}`, { headers });
   }
 }

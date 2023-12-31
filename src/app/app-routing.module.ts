@@ -11,9 +11,9 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: "login",                                      component: LoginComponent },
-  { path: "user/",                                      component: PageUserComponent },
-  { path: "admin/",                                     component: PageAdminComponent },
-  { path: "superadmin/",                                component: PageSuperAdminComponent },
+  { path: "user/:id",                                   component: PageUserComponent },
+  { path: "admin/:id",                                  component: PageAdminComponent },
+  { path: "superadmin/:id",                             component: PageSuperAdminComponent },
   { path: "centers",                                    component: VaccinationCenterListComponent},
   { path: "centers/detail/:id",                         component: VaccinationCenterComponent},
   { path: "add/user",                                   component: SignupComponent},

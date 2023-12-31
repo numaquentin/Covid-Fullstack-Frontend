@@ -19,8 +19,12 @@ export class SearchBarComponent {
   search: EventEmitter<VaccinationCenter[]> = new EventEmitter<VaccinationCenter[]>();
 
   SearchCenter(){
+    //this.centerService.
     this.centerService.getAllCenters().subscribe(centers => {
-      const filteredCenters = centers.filter(center => center.city.toLowerCase() === this.searchQuery.toLowerCase() || center.name.toLowerCase() === this.searchQuery.toLowerCase());
+      const filteredCenters = centers.filter(center => 
+        center.city.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+        center.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
       this.search.emit(filteredCenters);
     });    
   }
