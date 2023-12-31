@@ -1,5 +1,7 @@
 export interface User {
-    id: string
+    id: number;
     role: 'user' | 'admin' | 'superadmin';
-    center_id: number;
+    login: string;
+    password: string;
+    centerId: number;
   }

@@ -4,6 +4,9 @@ import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 import { VaccinationService } from '../service/vaccination.service';
 import { VaccinationCenterListComponent } from '../vaccination-center-list/vaccination-center-list.component';
 import { Output, EventEmitter } from '@angular/core';
+import { AuthService } from '../service/auth.service';
+import { User } from '../model/user.model';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -13,10 +16,9 @@ import { Output, EventEmitter } from '@angular/core';
 export class SearchBarComponent {
   searchQuery: string = '';
 
-  constructor(private centerService: VaccinationService) { }
+  constructor(private centerService: VaccinationService, private authService: AuthService, private userService: UserService) { }
 
-  @Output()
-  search: EventEmitter<VaccinationCenter[]> = new EventEmitter<VaccinationCenter[]>();
+  @Output() search: EventEmitter<VaccinationCenter[]> = new EventEmitter<VaccinationCenter[]>();
 
   SearchCenter(){
     //this.centerService.

@@ -1,33 +1,30 @@
-<h2>Reservation d'un rendez-vous à {{reservation.center!.name}}</h2>
+<h2>Reservation d'un rendez-vous à {{this.center!.name}}</h2>
 
 <form (ngSubmit)="onSubmit()"> 
   <div>
       <label for="name">Nom :</label>
-      <input type="string" id="name" [(ngModel)]="reservation.name" name="name" required>
+      <input type="string" id="name" [(ngModel)]="name" name="name" required>
   </div> 
 
   <div>
       <label for="surname">Prénom :</label>
-      <input type="string" id="surname" [(ngModel)]="reservation.surname" name="surname" required>
+      <input type="string" id="surname" [(ngModel)]="surname" name="surname" required>
   </div> 
 
   <div>
       <label for="mail">Email :</label>
-      <input type="string" id="mail" [(ngModel)]="reservation.mail" name="mail" required>
+      <input type="string" id="mail" [(ngModel)]="email" name="mail" required>
   </div>  
   
   <div>
     <label for="phone">Téléphone :</label>
-    <input type="number" id="phone" ngModel="reservation.phone" name="phone" required>
+    <input type="tel" id="phone" [(ngModel)]="phone" name="phone" required>
   </div>
 
   <div>
     <label for="date">Date :</label>
-    <input type="date" id="date" [(ngModel)]="reservation.date" name="date" required>
+    <input type="date" id="date" [(ngModel)]="date" name="date" required>
   </div>
 
-    <button 
-      type="submit"
-      routerLink="/centers">
-      Réserver un créneau</button>
+    <button type="submit">Réserver un créneau</button>
   </form>
