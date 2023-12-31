@@ -1,1 +1,24 @@
-<p>page-user works!</p>
+<div><a routerLink="">Déconnexion</a></div>
+
+<h2>Page médecin</h2>
+
+<div>
+    <input type="text" placeholder="Rechercher un patient..." [(ngModel)]="searchQuery">
+    <button (click)="SearchPatient(token)">Rechercher</button>
+</div>
+
+<div *ngIf="searchedRDVs.length > 0">
+    <h2>Résultats de la recherche :</h2>
+    <li *ngFor="let aRDV of searchedRDVs"
+    [ngClass]="selectedR==aRDV ? 'selectedR' : ''">
+    <button>{{aRDV.name | uppercase}} {{aRDV.surname}}, {{aRDV.date}}</button>
+    <button (click)="confirmRDV(aRDV)">Effacer</button>
+    </li>
+
+<h3>Liste des rendez-vous du centre</h3>
+<ul>
+    <li *ngFor="let aRdv of reservations">
+    <button>{{aRdv.name | uppercase}} {{aRdv.surname}}, {{aRdv.date}}</button>  
+    <button (click)="confirmRDV(aRdv)">Valider la vaccination</button>
+</li>
+</ul>

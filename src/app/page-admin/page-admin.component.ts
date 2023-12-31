@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
-import { VaccinationService } from '../service/vaccination.service';
-import { VaccinationCenter } from '../vaccination-center/vaccination-center';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { HeaderService } from '../service/header.service';
-import { User } from '../model/user.model'
-import { UserService } from '../service/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { VaccinationCenterComponent } from '../vaccination-center/vaccination-center.component';
 import { Reservation } from '../model/reservation.model';
+import { User } from '../model/user.model';
 import { ReservationService } from '../service/reservation.service';
-import { AuthService } from '../service/auth.service';
+import { UserService } from '../service/user.service';
+import { VaccinationCenter } from '../vaccination-center/vaccination-center';
 
 @Component({
   selector: 'app-page-admin',
@@ -46,11 +41,17 @@ export class PageAdminComponent {
   }
 
   deleteRDV(rdv: Reservation){
-    this.RDVService.deleteReservation(rdv).subscribe(response => {
+    this.RDVService.deleteReservation(rdv,this.token).subscribe(response => {
         console.log('Connexion réussie :', response);
     }, error => {
       console.error('Erreur lors de la connexion :', error);
     });
+    this.RDVService.getRDVbyCenter(this.token).subscribe(resultList =>{
+      this.reservations = resultList;
+      console.log('Importation de la liste de réservations réussie :', resultList);
+    }, error => {
+      console.error('Erreur lors de l\'importation de la liste de réservations :', error);
+    })
   }
 
   addMedecin() {

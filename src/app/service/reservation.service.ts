@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Reservation } from '../model/reservation.model';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Reservation } from '../model/reservation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +23,32 @@ export class ReservationService {
     return this.httpClient.post<{message: string}>('api/public/rendezvous/create', json, {headers});
   }
 
-  deleteReservation(reservation: Reservation){   
-    return this.httpClient.post(`api/admin/rendezvous/delete/{id}`, reservation);
+  deleteReservation(reservation: Reservation, token: string){ 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Basic ${token}`}); 
+    return this.httpClient.delete(`api/admin/rendezvous/delete/${reservation.id}`, {headers});
   }
+
 
   getRDVbyCenter(token: string): Observable<Reservation[]>{
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'});
+      'Content-Type': 'application/json',
+      'Authorization' : `Basic ${token}`});
     return this.httpClient.get<Reservation[]>('api/admin/rendezvous/byCenterId', {headers})
+  }
+
+  getRDVbyName(name: string, token: string): Observable<Reservation[]>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization' : `Basic ${token}`});
+    return this.httpClient.get<Reservation[]>(`api/user/rendezvous/byName/${name}`, {headers})
+  }
+
+  Vaccinate(reservation: Reservation, token: string){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization' : `Basic ${token}`});
+    return this.httpClient.put(`api/user/rendezvous/vaccinate/${reservation.id}`, {headers})
   }
 }
